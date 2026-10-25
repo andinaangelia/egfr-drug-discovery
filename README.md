@@ -36,7 +36,36 @@ The pipeline combines bioactivity data retrieval, chemical structure processing,
 
 ## Results
 
-*Add the final dataset size, evaluation metrics, model comparison, and key findings after completing validation.*
+The Random Forest regression model was developed to predict the bioactivity of small molecules against EGFR using molecular fingerprints as input features and pIC50 as the prediction target.
+
+### Model Evaluation
+
+![Random Forest Regression Results](RegressionForestModel.png)
+
+The dataset contained **791 molecules** and was split into **80% training data and 20% testing data** for model evaluation.
+
+- **Test-set R²:** 0.7036
+- **Training strategy:** 80/20 train-test split
+- **Model:** Random Forest Regression
+
+The test-set R² of 0.7036 indicates that the model explains approximately **70.4% of the variation in pIC50 values** in the held-out test set. This provides a promising baseline, although further validation is needed to determine how reliably the model predicts bioactivity for unseen compounds.
+
+### Final Model for the Web Application
+
+After evaluation, the model was trained using the full dataset of 791 molecules for use in the Streamlit application. The resulting R² of 0.9606 was obtained when evaluating predictions on the same data used for training.
+
+This higher R² reflects the model's fit to the training data and should not be interpreted as independent evidence of predictive performance. The held-out test-set R² is the more appropriate metric for estimating generalization to unseen molecules.
+
+### Limitations and Future Improvements
+
+Potential improvements include:
+
+- Expanding the training dataset beyond the initial 791 molecules.
+- Evaluating generalization using scaffold-based splitting and cross-validation.
+- Investigating the effects of chemical diversity, data quality, and assay variability.
+- Assessing prediction uncertainty before applying the model to novel compounds.
+
+**Note:** Predicted pIC50 values are computational estimates and require experimental validation.
 
 ## Limitations
 
